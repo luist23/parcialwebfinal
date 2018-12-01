@@ -11,8 +11,10 @@ module.exports = {
                     err
                 })
             }else{
-                ok:true,
-                animes
+                res.json({
+                    ok:true,
+                    animes
+                })
             }
         });
 
@@ -26,8 +28,10 @@ module.exports = {
                     err
                 })
             }else{
-                ok:true,
-                animes
+                res.json({
+                    ok:true,
+                    animes
+                })
             }
         });
 
@@ -41,48 +45,54 @@ module.exports = {
                     err
                 })
             }else{
-                ok:true
-                eliminado
+                res.json({
+                    ok:true,
+                    eliminado
+                })
             }
         });
 
     },
     update : function(req, res){
-        let update={
+        let actualizado={
             nombre : req.body.nombre,
             genero: req.body.genero,
             creador:req.body.creador
         };
-        anime.findByIdAndUpdate({_id: req.body.id},update,function(err,old){
+        anime.findByIdAndUpdate({_id: req.body.id},actualizado,function(err,old){
             if(err){
                 res.json({
                     ok:false,
                     err
                 })
             }else{
-                ok:true,
-                old,
-                update
+                res.json({
+                    ok:true,
+                    old,
+                    actualizado
+                })
             }
         });
         },
 
 
     insert : function(req, res){
-        let anime = new anime({
+        let animeNew = new anime({
             nombre : req.body.nombre,
             genero: req.body.genero,
             creador:req.body.creador
         });
-        anime.save({_id: req.body.id},update,function(err,insert){
+        animeNew.save(function(err,anime){
             if(err){
                 res.json({
                     ok:false,
                     err
                 })
             }else{
-                ok:true,
-                insert
+                res.json({
+                    ok:true,
+                    anime
+                })
             }
         });
 

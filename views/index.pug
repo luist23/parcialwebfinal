@@ -4,6 +4,11 @@ block content
   h1= title
   p Welcome to #{title}
 
+  form#nuevoanime(class="formulario" action="/" method="POST")
+    input#nombre(type="text", name="nombre")
+    input#genero(type="text", name="genero")
+    input#creador(type="text", name="creador")
+    input(type="submit", value="Guardar" name="guardar")
   table.anime-content
     thead
       tr  
