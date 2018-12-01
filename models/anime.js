@@ -1,9 +1,9 @@
-var mongoose = requiere('mongoose');
+var mongoose = require('mongoose');
 
-var annime = new mongoose.schema({
+var annime = mongoose.Schema({
     nombre : {type:String, requiere: true},
     genero : {type:String, requiere: true},
     creador : {type:String, requiere: true}
 });
 
-module.exports('anime',annime);
+module.exports = mongoose.model('anime',annime);
