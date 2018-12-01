@@ -53,7 +53,7 @@ animes.update = function(req, res){
         genero: req.body.genero,
         creador:req.body.creador
     };
-anime.findByIdAndDelete({_id: req.body.id},update,function(err,old){
+anime.findByIdAndUpdate({_id: req.body.id},update,function(err,old){
     if(err){
         res.json({
             ok:false,
@@ -63,6 +63,26 @@ anime.findByIdAndDelete({_id: req.body.id},update,function(err,old){
         ok:true,
         old,
         update
+    }
+});
+};
+
+
+animes.update = function(req, res){
+    let anime = new anime({
+        nombre : req.body.nombre,
+        genero: req.body.genero,
+        creador:req.body.creador
+    });
+anime.save({_id: req.body.id},update,function(err,insert){
+    if(err){
+        res.json({
+            ok:false,
+            err
+        })
+    }else{
+        ok:true,
+        insert
     }
 });
 
