@@ -6,3 +6,24 @@ body {
 a {
   color: #00B7FF;
 }
+h1{
+  background-color: #ffe9c4;
+  padding: 2%;
+}
+
+thead{
+  background-color: #b4e8f7;
+}
+
+form{
+  background-color: #e5eaee;
+  padding: 2%;
+}
+form * {
+  padding: 1em;
+  border-radius: 1em;
+  margin: 1em;
+}
+.guardar{
+  background-color: #04964d;
+}

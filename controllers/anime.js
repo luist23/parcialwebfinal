@@ -8,6 +8,7 @@ module.exports = {
             if(err){
                 res.json({
                     ok:false,
+                    status: 500,
                     err
                 })
             }else{
@@ -25,11 +26,13 @@ module.exports = {
             if(err){
                 res.json({
                     ok:false,
+                    status: 500,
                     err
                 })
             }else{
                 res.json({
                     ok:true,
+                    status: 500,
                     animes
                 })
             }
@@ -42,6 +45,7 @@ module.exports = {
             if(err){
                 res.json({
                     ok:false,
+                    status: 500,
                     err
                 })
             }else{

@@ -2,13 +2,12 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
 
   form#nuevoanime(class="formulario" action="/" method="POST")
-    input#nombre(type="text", name="nombre")
-    input#genero(type="text", name="genero")
-    input#creador(type="text", name="creador")
-    input(type="submit", value="Guardar" name="guardar")
+    input#nombre(type="text", name="nombre" placeholder="anime")
+    input#genero(type="text", name="genero" placeholder="genero")
+    input#creador(type="text", name="creador" placeholder="creador")
+    input(type="submit", value="Guardar" name="guardar" class='guardar')
   table.anime-content
     thead
       tr  
@@ -16,6 +15,8 @@ block content
         td Nombre
         td Genero
         td Creador
+        td opcion 1
+        td opcion 2
     tbody.anime
   script(src="javascripts/main.js")
 
