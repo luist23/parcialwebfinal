@@ -11,9 +11,9 @@ let newRow = function(data){
     
     fila.innerHTML = `
     <td>${data._id}</td>
-    <td name="nombre">${data.nombre}</td>
-    <td name="genero">${data.genero}</td>
-    <td name="creador">${data.creador}</td>`;
+    <td class="nombre">${data.nombre}</td>
+    <td class="genero">${data.genero}</td>
+    <td class="creador">${data.creador}</td>`;
     tbody.appendChild(fila);
     deleteRow(fila);
     //console.log(tbody.guardar);
@@ -49,7 +49,7 @@ var save = function(){
             }
         }).then((data)=>data.json()).then(function(data){
             if(data.ok){
-                console.log(data.anime);
+                newRow(data.anime);
             }else{
                 console.log(data);
             }
@@ -91,32 +91,35 @@ let deleteRow = function(row){
 
 let updateRow = function(row){
     let tbody = document.getElementsByClassName('formulario')[0];
-    let actualizar = document.createElement("button");
+    let actualizar = document.createElement("button");actualizar.setAttribute("class","btn_update")
     actualizar.innerHTML = "actualizar";
     tbody.appendChild(actualizar);
-    console.log(row.getAttribute("data-id"));
+    console.log(tbody);
     
     actualizar.addEventListener('click',function(){
-    fetch("/"+row.getAttribute("data-id"),{
-        method:'PUT',
-        body: JSON.stringify({
-            nombre:tbody.nombre.value,
-            genero:tbody.genero.value,
-            creador:tbody.creador.value
-        }),
-        headers:{
-            'content-type':'application/json'
-        }
-    }).then((data)=>data.json()).then(function(data){
-        if(data.ok){
-            row.nombre.innerHTML=tbody.nombre.value;
-            row.genero.innerHTML=tbody.genero.value;
-            row.creador.innerHTML=tbody.creador.value;
-            tbody.parentElement.remove(actualizar);
-        }else{
-            console.log(data);
-        }
-    });
+        let newname= tbody.nombre.value;
+        let newGenro = tbody.genero.value;
+        let newCreator = tbody.creador.value;
+        fetch("/"+ row.getAttribute("data-id"),{
+            method:'PUT',
+            body: JSON.stringify({
+                nombre: newname,
+                genero:newGenro,
+                creador: newCreator
+            }),
+            headers:{
+                'content-type':'application/json'
+            }
+        }).then((data)=>data.json()).then(function(data){
+            if(data.ok){
+                row.getElementsByClassName('nombre')[0].innerHTML= newname;
+                row.getElementsByClassName('genero')[0].innerHTML= newGenro;
+                row.getElementsByClassName('creador')[0].innerHTML= newCreator;
+                actualizar.replaceWith();
+            }else{
+                console.log(data);
+            }
+        });
 });
 
 

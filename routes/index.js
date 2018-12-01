@@ -11,5 +11,5 @@ router.post('/',animeController.insert);
 router.get('/:id',animeController.findOne);
 
 router.delete('/:id',animeController.delete);
-router.put('/',animeController.update);
+router.put('/:id',animeController.update);
 module.exports = router;
