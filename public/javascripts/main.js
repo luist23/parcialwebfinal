@@ -60,8 +60,8 @@ var save = function(){
 }
 
 let deleteRow = function(row){
-    let eliminar = document.createElement("button");
-    eliminar.innerHTML = "eliminar";
+    let eliminar = document.createElement("i");eliminar.setAttribute("class","fas fa-trash-alt");
+    eliminar.innerHTML = "";
     row.appendChild(eliminar);
     
     eliminar.addEventListener('click',function(){
@@ -81,8 +81,8 @@ let deleteRow = function(row){
         });
     });
 
-    let actualizar = document.createElement("button");
-    actualizar.innerHTML = "actualizar";
+    let actualizar = document.createElement("i");actualizar.setAttribute("class","fas fa-edit");
+    actualizar.innerHTML = "";
     row.appendChild(actualizar); 
     actualizar.addEventListener('click',function(){
         updateRow(row);
@@ -91,7 +91,7 @@ let deleteRow = function(row){
 
 let updateRow = function(row){
     let tbody = document.getElementsByClassName('formulario')[0];
-    let actualizar = document.createElement("button");actualizar.setAttribute("class","btn_update")
+    let actualizar = document.createElement("i");actualizar.setAttribute("class","fas fa-edit");
     actualizar.innerHTML = "actualizar";
     tbody.appendChild(actualizar);
     console.log(tbody);

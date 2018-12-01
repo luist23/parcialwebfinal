@@ -17,13 +17,40 @@ thead{
 
 form{
   background-color: #e5eaee;
+
   padding: 2%;
+  display: flex;
 }
 form * {
   padding: 1em;
   border-radius: 1em;
   margin: 1em;
+  flex: 1;
 }
 .guardar{
   background-color: #04964d;
+}
+tr {
+  display: flex;
+  border-bottom: double;
+text-justify: auto;
+text-align: center;
+justify-items: center;
+align-items: center;
+justify-content: center;
+align-content: center;
+}
+td{
+  flex :1;
+  font-weight: bold;
+  text-justify: auto;
+text-align: center;
+justify-items: center;
+}
+table{
+  width: 90vw;
+}
+i{
+  font-size: 2em;
+  margin: 9px;
 }
