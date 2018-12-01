@@ -21,7 +21,7 @@ module.exports = {
     },
 
     findOne : function(req, res){
-        anime.findById({_id: req.body.id},function(err,animes){
+        anime.findById(req.params.id,function(err,animes){
             if(err){
                 res.json({
                     ok:false,
@@ -38,7 +38,7 @@ module.exports = {
     },
 
     delete : function(req, res){
-        anime.findByIdAndDelete({_id: req.body.id},function(err,eliminado){
+        anime.findByIdAndDelete(req.params.id,function(err,eliminado){
             if(err){
                 res.json({
                     ok:false,
@@ -59,7 +59,7 @@ module.exports = {
             genero: req.body.genero,
             creador:req.body.creador
         };
-        anime.findByIdAndUpdate({_id: req.body.id},actualizado,function(err,old){
+        anime.findByIdAndUpdate(req.params.id,actualizado,function(err,old){
             if(err){
                 res.json({
                     ok:false,

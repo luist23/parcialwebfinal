@@ -23,7 +23,7 @@ let loadContentAll = function(){
     fetch('/all').then((data)=>data.json()).then(function(data){
         if(data.ok){
             data.animes.forEach(element => {
-                console.log(element);
+                //console.log(element);
                 newRow(element);
             });
         }
@@ -63,7 +63,9 @@ let deleteRow = function(row){
     let eliminar = document.createElement("button");
     eliminar.innerHTML = "eliminar";
     row.appendChild(eliminar);
+    
     eliminar.addEventListener('click',function(){
+        console.log(eliminar.parentElement.getAttribute("data-id"));
         fetch("/"+eliminar.parentElement.getAttribute("data-id"),{
             method:'DELETE',
             headers:{
@@ -72,7 +74,7 @@ let deleteRow = function(row){
         }).then((data)=>data.json()).then(function(data){
             if(data.ok){
                 console.log(data.eliminado);
-                eliminar.parentElement.parentElement.remove(eliminar.parentElement);
+                eliminar.parentElement.remove(eliminar);
             }else{
                 console.log(data.err);
             }
