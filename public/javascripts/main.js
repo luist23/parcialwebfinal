@@ -11,9 +11,9 @@ let newRow = function(data){
     
     fila.innerHTML = `
     <td>${data._id}</td>
-    <td>${data.nombre}</td>
-    <td>${data.genero}</td>
-    <td>${data.creador}</td>`;
+    <td name="nombre">${data.nombre}</td>
+    <td name="genero">${data.genero}</td>
+    <td name="creador">${data.creador}</td>`;
     tbody.appendChild(fila);
     deleteRow(fila);
     //console.log(tbody.guardar);
@@ -80,6 +80,47 @@ let deleteRow = function(row){
             }
         });
     });
+
+    let actualizar = document.createElement("button");
+    actualizar.innerHTML = "actualizar";
+    row.appendChild(actualizar); 
+    actualizar.addEventListener('click',function(){
+        updateRow(row);
+    });
+}
+
+let updateRow = function(row){
+    let tbody = document.getElementsByClassName('formulario')[0];
+    let actualizar = document.createElement("button");
+    actualizar.innerHTML = "actualizar";
+    tbody.appendChild(actualizar);
+    console.log(row.getAttribute("data-id"));
+    
+    actualizar.addEventListener('click',function(){
+    fetch("/"+row.getAttribute("data-id"),{
+        method:'PUT',
+        body: JSON.stringify({
+            nombre:tbody.nombre.value,
+            genero:tbody.genero.value,
+            creador:tbody.creador.value
+        }),
+        headers:{
+            'content-type':'application/json'
+        }
+    }).then((data)=>data.json()).then(function(data){
+        if(data.ok){
+            row.nombre.innerHTML=tbody.nombre.value;
+            row.genero.innerHTML=tbody.genero.value;
+            row.creador.innerHTML=tbody.creador.value;
+            tbody.parentElement.remove(actualizar);
+        }else{
+            console.log(data);
+        }
+    });
+});
+
+
+
 }
 
 
