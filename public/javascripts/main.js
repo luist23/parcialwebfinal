@@ -5,11 +5,31 @@ let loadContent = function(){
 
 };
 
-let newRow = function(){
-    let tbody = document.getElementsByClassName('formulario')[0];
-    console.log(tbody.guardar);
+let newRow = function(data){
+    let tbody = document.getElementsByClassName('anime')[0];
+    let fila = document.createElement("tr");fila.setAttribute(`data-id`,data._id);
+    
+    fila.innerHTML = `
+    <td>${data._id}</td>
+    <td>${data.nombre}</td>
+    <td>${data.genero}</td>
+    <td>${data.creador}</td>`;
+    tbody.appendChild(fila);
+    deleteRow(fila);
+    //console.log(tbody.guardar);
 }
-newRow();
+
+let loadContentAll = function(){
+    fetch('/all').then((data)=>data.json()).then(function(data){
+        if(data.ok){
+            data.animes.forEach(element => {
+                console.log(element);
+                newRow(element);
+            });
+        }
+
+    });
+}
 
 
 var save = function(){
@@ -27,9 +47,9 @@ var save = function(){
             headers:{
                 'content-type':'application/json'
             }
-        }).then((data)=>JSON(data)).then(function(data){
+        }).then((data)=>data.json()).then(function(data){
             if(data.ok){
-                console.log(data);
+                console.log(data.anime);
             }else{
                 console.log(data);
             }
@@ -38,4 +58,29 @@ var save = function(){
     
 
 }
+
+let deleteRow = function(row){
+    let eliminar = document.createElement("button");
+    eliminar.innerHTML = "eliminar";
+    row.appendChild(eliminar);
+    eliminar.addEventListener('click',function(){
+        fetch("/"+eliminar.parentElement.getAttribute("data-id"),{
+            method:'DELETE',
+            headers:{
+                'content-type':'application/json'
+            }
+        }).then((data)=>data.json()).then(function(data){
+            if(data.ok){
+                console.log(data.eliminado);
+                eliminar.parentElement.parentElement.remove(eliminar.parentElement);
+            }else{
+                console.log(data.err);
+            }
+        });
+    });
+}
+
+
+
+loadContentAll();
 save();
