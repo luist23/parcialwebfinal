@@ -24,7 +24,7 @@ let loadContentAll = function(){
     //let a =tbody.innerHTML;
     //tbody.innerHTML= `<i class="fas fa-smile-wink"></i>` + a;
     //
-    fetch('/all').then((data)=>data.json()).then(function(data){
+    fetch('api/anime/all').then((data)=>data.json()).then(function(data){
         if(data.ok){
             data.animes.forEach(element => {
                 //console.log(element);
@@ -41,7 +41,7 @@ var save = function(){
     tbody.addEventListener("submit",(evt)=>{
         evt.preventDefault();
         //alert(":v");
-        fetch("/",{
+        fetch("/api/anime",{
             method:'POST',
             body: JSON.stringify({
                 nombre:tbody.nombre.value,
@@ -70,7 +70,7 @@ let deleteRow = function(row){
     
     eliminar.addEventListener('click',function(){
         console.log(eliminar.parentElement.getAttribute("data-id"));
-        fetch("/"+eliminar.parentElement.getAttribute("data-id"),{
+        fetch("/api/anime/"+eliminar.parentElement.getAttribute("data-id"),{
             method:'DELETE',
             headers:{
                 'content-type':'application/json'
@@ -111,7 +111,7 @@ let updateRow = function(row){
         let newname= tbody.nombre.value;
         let newGenro = tbody.genero.value;
         let newCreator = tbody.creador.value;
-        fetch("/"+ row.getAttribute("data-id"),{
+        fetch("/api/anime"+ row.getAttribute("data-id"),{
             method:'PUT',
             body: JSON.stringify({
                 nombre: newname,
