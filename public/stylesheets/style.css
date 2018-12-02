@@ -57,3 +57,10 @@ i{
   font-size: 2em;
   margin: 9px;
 }
+
+.fa-trash-alt{
+  color: red;
+}
+.fa-ban{
+  color: red;
+}

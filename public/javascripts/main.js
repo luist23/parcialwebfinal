@@ -20,6 +20,10 @@ let newRow = function(data){
 }
 
 let loadContentAll = function(){
+    //let tbody = document.getElementsByClassName('tituloA')[0];
+    //let a =tbody.innerHTML;
+    //tbody.innerHTML= `<i class="fas fa-smile-wink"></i>` + a;
+    //
     fetch('/all').then((data)=>data.json()).then(function(data){
         if(data.ok){
             data.animes.forEach(element => {
