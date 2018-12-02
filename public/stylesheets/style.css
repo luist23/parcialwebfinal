@@ -13,6 +13,8 @@ h1{
 
 thead{
   background-color: #b4e8f7;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
 }
 
 form{
@@ -29,6 +31,7 @@ form * {
 }
 .guardar{
   background-color: #04964d;
+  color: white;
 }
 tr {
   display: flex;

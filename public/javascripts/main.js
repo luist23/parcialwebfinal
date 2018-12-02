@@ -94,8 +94,15 @@ let updateRow = function(row){
     let actualizar = document.createElement("i");actualizar.setAttribute("class","fas fa-edit");
     actualizar.innerHTML = "actualizar";
     tbody.appendChild(actualizar);
-    console.log(tbody);
+
+    let cancelar = document.createElement("i");cancelar.setAttribute("class","fas fa-ban");
+    cancelar.innerHTML = "";
+    tbody.appendChild(cancelar);
     
+    cancelar.addEventListener('click',function(){
+        actualizar.replaceWith();
+        cancelar.replaceWith();
+    });
     actualizar.addEventListener('click',function(){
         let newname= tbody.nombre.value;
         let newGenro = tbody.genero.value;

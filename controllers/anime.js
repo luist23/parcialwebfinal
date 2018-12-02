@@ -67,6 +67,7 @@ module.exports = {
             if(err){
                 res.json({
                     ok:false,
+                    status: 500,
                     err
                 })
             }else{
@@ -90,6 +91,7 @@ module.exports = {
             if(err){
                 res.json({
                     ok:false,
+                    status: 500,
                     err
                 })
             }else{
